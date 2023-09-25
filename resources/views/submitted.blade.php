@@ -8,11 +8,11 @@
 </head>
 <body>
     <main class="bg-body-tertiary">
-        {{-- @if($success)
+        @if($success)
             @php
                 session()->flash('success', 'Form berhasil disimpan');
             @endphp
-        @endif --}}
+        @endif
         <div class="mx-auto py-4 px-5" style="width: 65%">
             @include('partials/successMessage')
             <div>
