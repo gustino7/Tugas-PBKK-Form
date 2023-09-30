@@ -27,7 +27,3 @@ Route::get('/pendaftaran', function () {
 });
 
 Route::post('/submit-pendaftaran', [FormRegistController::class, 'submit']);
-
-Route::get('/submit-pendaftaran/submitted', function () {
-    return view('submitted');
-});

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form;
 use Illuminate\Http\Request;
 
 class FormRegistController extends Controller
@@ -29,9 +30,24 @@ class FormRegistController extends Controller
             );
         }
         $request['photo'] = $imgName;
-        // dd($request->all());
-        return view('submitted', ['data' => $request, 'photo' => $imgName, 'success' => 'Form berhasil disimpan']);
-        
-        // return redirect('/submitted')->with(['success'=> 'Form berhasil disimpan.', 'data' => $request, 'photo' => $imgName]);
+
+        Form::create([
+            'firstName' => $request->firstName,
+            'lastName' => $request->lastName,
+            'jalan' => $request->jalan,
+            'kecamatan' => $request->kecamatan, 
+            'kota' => $request->kota, 
+            'provinsi' => $request->provinsi, 
+            'kodePos' => $request->kodePos, 
+            'negara' => $request->negara, 
+            'tanggalLahir' => $request->tanggalLahir, 
+            'email' => $request->email, 
+            'noHp' => $request->noHp, 
+            'nisn' => $request->nisn, 
+            'un' => $request->un, 
+            'photo' => $imgName
+        ]);
+        $datas = Form::where('nisn', $request->nisn)->first();
+        return view('submitted', ['datas' => $datas, 'success' => 'Form berhasil disimpan']);
     }
 }
